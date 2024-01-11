@@ -46,4 +46,4 @@ Para usar la libreria necesitara tener instalado estas librerias porque **WebCUt
 
 2.**curl.h**, puedes obtenerlo del sitio web oficial de cURL en la sección de descargas: https://curl.se/download.html
 
-Hay un discord por aqui: https://discord.gg/dxNyrrhWCK
+Hay un discord por aqui: https://discord.com/invite/fwHVT8yTjx
