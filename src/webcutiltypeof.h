@@ -234,6 +234,16 @@ typedef struct {
     void (*option_c)();
     void (*caption)();
     void (*p)(const String, const String);
+    void (*coment_o)();
+    void (*coment_c)();
+    void (*php_o)();
+    void (*php_c)();
+    void (*script_o)();
+    void (*script_c)();
+    void (*style_o)();
+    void (*style_c)();
+    void (*php)(const String);
+    void (*text)(const String);
     int (*send)(server *, int);
 }html;
 
