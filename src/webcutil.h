@@ -67,7 +67,7 @@ void cat_str(const String texto1, const String texto2, String resultado){
 void _title (const String title){
     char temp[HTML_LONG];
     cat_str("<title>",title, temp);
-    cat_str(temp,"</title>",result_html);
+    cat_str(temp,"</title>\n",result_html);
     cat_str(result_html,"",true_html);
 }
 
@@ -77,14 +77,14 @@ static void _canvas_o (const String attributes){
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<canvas>","",temp);
+        cat_str("<canvas>","\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<canvas ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -97,7 +97,7 @@ static void _canvas_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</canvas>",temp_2);
+    cat_str(temp,"</canvas>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -108,9 +108,8 @@ static void _html_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<!DOCTYPE html><html>","",temp);
+        cat_str("<!DOCTYPE html><html>\n","",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -130,7 +129,7 @@ static void _html_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</html>",temp_2);
+    cat_str(temp,"</html>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -140,7 +139,7 @@ static void _center_open (){
     char temp[HTML_LONG];
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
-    cat_str("<center>","",temp);
+    cat_str("<center>","\n",temp);
     cat_str(temp,"",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
@@ -152,7 +151,7 @@ static void _center_close (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</center>",temp_2);
+    cat_str(temp,"</center>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -166,7 +165,7 @@ static void _h1 (const String attributes, const String h1){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<h1>",h1,temp);
-        cat_str(temp,"</h1>",temp_2);
+        cat_str(temp,"</h1>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -174,7 +173,7 @@ static void _h1 (const String attributes, const String h1){
         cat_str("<h1 ",attributes,temp_4);
         cat_str(temp_4,">",temp);
         cat_str(temp,h1,temp_5);
-        cat_str(temp_5,"</h1>",temp_2);
+        cat_str(temp_5,"</h1>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -189,7 +188,7 @@ static void _h2 (const String attributes, const String h2){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<h2>",h2,temp);
-        cat_str(temp,"</h2>",temp_2);
+        cat_str(temp,"</h2>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -197,7 +196,7 @@ static void _h2 (const String attributes, const String h2){
         cat_str("<h2 ",attributes,temp_4);
         cat_str(temp_4,">",temp);
         cat_str(temp,h2,temp_5);
-        cat_str(temp_5,"</h2>",temp_2);
+        cat_str(temp_5,"</h2>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -212,7 +211,7 @@ static void _h3 (const String attributes, const String h3){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<h3>",h3,temp);
-        cat_str(temp,"</h3>",temp_2);
+        cat_str(temp,"</h3>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -220,7 +219,7 @@ static void _h3 (const String attributes, const String h3){
         cat_str("<h3 ",attributes,temp_4);
         cat_str(temp_4,">",temp);
         cat_str(temp,h3,temp_5);
-        cat_str(temp_5,"</h3>",temp_2);
+        cat_str(temp_5,"</h3>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -235,7 +234,7 @@ static void _h4 (const String attributes, const String h4){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<h4>",h4,temp);
-        cat_str(temp,"</h4>",temp_2);
+        cat_str(temp,"</h4>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -243,7 +242,7 @@ static void _h4 (const String attributes, const String h4){
         cat_str("<h4 ",attributes,temp_4);
         cat_str(temp_4,">",temp);
         cat_str(temp,h4,temp_5);
-        cat_str(temp_5,"</h4>",temp_2);
+        cat_str(temp_5,"</h4>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -258,7 +257,7 @@ static void _h5 (const String attributes, const String h5){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<h5>",h5,temp);
-        cat_str(temp,"</h5>",temp_2);
+        cat_str(temp,"</h5>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -266,7 +265,7 @@ static void _h5 (const String attributes, const String h5){
         cat_str("<h5 ",attributes,temp_4);
         cat_str(temp_4,">",temp);
         cat_str(temp,h5,temp_5);
-        cat_str(temp_5,"</h5>",temp_2);
+        cat_str(temp_5,"</h5>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -281,7 +280,7 @@ static void _h6 (const String attributes, const String h6){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<h6>",h6,temp);
-        cat_str(temp,"</h6>",temp_2);
+        cat_str(temp,"</h6>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -289,7 +288,7 @@ static void _h6 (const String attributes, const String h6){
         cat_str("<h6 ",attributes,temp_4);
         cat_str(temp_4,">",temp);
         cat_str(temp,h6,temp_5);
-        cat_str(temp_5,"</h6>",temp_2);
+        cat_str(temp_5,"</h6>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -304,7 +303,7 @@ static void _i (const String attributes, const String i){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<i>",i,temp);
-        cat_str(temp,"</i>",temp_2);
+        cat_str(temp,"</i>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -312,7 +311,7 @@ static void _i (const String attributes, const String i){
         cat_str("<i ",attributes,temp_4);
         cat_str(temp_4,">",temp);
         cat_str(temp,i,temp_5);
-        cat_str(temp_5,"</i>",temp_2);
+        cat_str(temp_5,"</i>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -326,7 +325,7 @@ static void _b (const String attributes, const String b){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<b>",b,temp);
-        cat_str(temp,"</b>",temp_2);
+        cat_str(temp,"</b>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -334,7 +333,7 @@ static void _b (const String attributes, const String b){
         cat_str("<b ",attributes,temp_4);
         cat_str(temp_4,">",temp);
         cat_str(temp,b,temp_5);
-        cat_str(temp_5,"</b>",temp_2);
+        cat_str(temp_5,"</b>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -348,7 +347,7 @@ static void _e (const String attributes, const String e){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<e>",e,temp);
-        cat_str(temp,"</e>",temp_2);
+        cat_str(temp,"</e>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -356,7 +355,7 @@ static void _e (const String attributes, const String e){
         cat_str("<e ",attributes,temp_4);
         cat_str(temp_4,">",temp);
         cat_str(temp,e,temp_5);
-        cat_str(temp_5,"</e>",temp_2);
+        cat_str(temp_5,"</e>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -370,7 +369,7 @@ static void _em (const String attributes, const String em){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<em>",em,temp);
-        cat_str(temp,"</em>",temp_2);
+        cat_str(temp,"</em>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -378,7 +377,7 @@ static void _em (const String attributes, const String em){
         cat_str("<em ",attributes,temp_4);
         cat_str(temp_4,">",temp);
         cat_str(temp,em,temp_5);
-        cat_str(temp_5,"</em>",temp_2);
+        cat_str(temp_5,"</em>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -393,7 +392,7 @@ static void _p (const String attributes, const String p){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<p>",p,temp);
-        cat_str(temp,"</p>",temp_2);
+        cat_str(temp,"</p>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -401,7 +400,7 @@ static void _p (const String attributes, const String p){
         cat_str("<p ",attributes,temp_4);
         cat_str(temp_4,">",temp);
         cat_str(temp,p,temp_5);
-        cat_str(temp_5,"</p>",temp_2);
+        cat_str(temp_5,"</p>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -416,7 +415,7 @@ static void _button (const String attributes, const String button){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<button>",button,temp);
-        cat_str(temp,"</button>",temp_2);
+        cat_str(temp,"</button>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -424,7 +423,7 @@ static void _button (const String attributes, const String button){
         cat_str("<button ",attributes,temp_4);
         cat_str(temp_4,">",temp);
         cat_str(temp,button,temp_5);
-        cat_str(temp_5,"</button>",temp_2);
+        cat_str(temp_5,"</button>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -439,7 +438,7 @@ static void _script (const String attributes, const String script){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<script>",script,temp);
-        cat_str(temp,"</script>",temp_2);
+        cat_str(temp,"</script>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -447,20 +446,19 @@ static void _script (const String attributes, const String script){
         cat_str("<script ",attributes,temp_4);
         cat_str(temp_4,">",temp);
         cat_str(temp,script,temp_5);
-        cat_str(temp_5,"</script>",temp_2);
+        cat_str(temp_5,"</script>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     }
 }
 
-/*Nuevas etiquetas html*/
 static void _style (const String style){
     char temp[HTML_LONG];
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<style>",style,temp);
-    cat_str(temp,"</style>",temp_2);
+    cat_str(temp,"</style>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -471,7 +469,7 @@ static void _div (const String div){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<div ",div,temp);
-    cat_str(temp,"></div>",temp_2);
+    cat_str(temp,"></div>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -482,14 +480,13 @@ static void _div_o (const String attributes, const String t){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
         if(t == NULL){
             printf("WebCUtils: the second param is 'NULL'\n");
             return;
         }
         cat_str("<div>",t,temp);
-        cat_str(temp,"",temp_2);
+        cat_str(temp,"\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -499,7 +496,7 @@ static void _div_o (const String attributes, const String t){
             return;
         }
         cat_str("<div ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,t,temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -512,7 +509,7 @@ static void _div_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</div>",temp_2);
+    cat_str(temp,"</div>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -523,16 +520,15 @@ static void _body_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<body>","",temp);
+        cat_str("<body>","\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<body ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -544,7 +540,7 @@ static void _body_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</body>",temp_2);
+    cat_str(temp,"</body>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -555,7 +551,7 @@ static void _body (const String body){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<body>",body,temp);
-    cat_str(temp,"</body>",temp_2);
+    cat_str(temp,"</body>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -566,16 +562,15 @@ static void _head_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<head>","",temp);
+        cat_str("<head>","\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<head ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -588,7 +583,7 @@ static void _head_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</head>",temp_2);
+    cat_str(temp,"</head>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -599,7 +594,7 @@ static void _head (const String head){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<head>",head,temp);
-    cat_str(temp,"</head>",temp_2);
+    cat_str(temp,"</head>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -613,7 +608,7 @@ static int _img (const String attributes){
         char temp_2[HTML_LONG];
         char temp_3[HTML_LONG];
         cat_str("<img ",attributes,temp);
-        cat_str(temp,">",temp_2);
+        cat_str(temp,">\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -632,7 +627,7 @@ static int _a (const String attributes, const String a){
         cat_str("<a ",attributes,temp);
         cat_str(temp,">",temp_4);
         cat_str(temp_4,a,temp_5);
-        cat_str(temp_5,"</a>",temp_2);
+        cat_str(temp_5,"</a>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -644,16 +639,15 @@ static void _section_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<section>","",temp);
+        cat_str("<section>","\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<section ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -666,7 +660,7 @@ static void _section_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</section>",temp_2);
+    cat_str(temp,"</section>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -677,7 +671,7 @@ static void _section (const String section){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<section ",section,temp);
-    cat_str(temp,"></section>",temp_2);
+    cat_str(temp,"></section>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -688,16 +682,15 @@ static void _article_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<article>","",temp);
+        cat_str("<article>","\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<article ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -710,7 +703,7 @@ static void _article_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</article>",temp_2);
+    cat_str(temp,"</article>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -721,7 +714,7 @@ static void _article (const String article){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<article>",article,temp);
-    cat_str(temp,"</article>",temp_2);
+    cat_str(temp,"</article>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -732,16 +725,15 @@ static void _header_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<header>","",temp);
+        cat_str("<header>","\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<header ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -754,7 +746,7 @@ static void _header_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</header>",temp_2);
+    cat_str(temp,"</header>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -765,7 +757,7 @@ static void _header (const String header){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<header>",header,temp);
-    cat_str(temp,"</header>",temp_2);
+    cat_str(temp,"</header>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -776,7 +768,7 @@ static void _footer (const String footer){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<footer>",footer,temp);
-    cat_str(temp,"</footer>",temp_2);
+    cat_str(temp,"</footer>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -787,7 +779,6 @@ static void _footer_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<footer>","",temp);
         cat_str(temp,"",temp_2);
@@ -796,7 +787,7 @@ static void _footer_o (const String attributes){
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<footer ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -809,7 +800,7 @@ static void _footer_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</footer>",temp_2);
+    cat_str(temp,"</footer>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -819,8 +810,8 @@ static void _video (const String video){
     char temp[HTML_LONG];
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
-    cat_str("<footer>",video,temp);
-    cat_str(temp,"</footer>",temp_2);
+    cat_str("<video>",video,temp);
+    cat_str(temp,"</video>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -831,7 +822,7 @@ static void _form (const String from){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<footer>",from,temp);
-    cat_str(temp,"</footer>",temp_2);
+    cat_str(temp,"</footer>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -842,16 +833,15 @@ static void _form_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<form>","",temp);
+        cat_str("<form>","\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<form ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -864,7 +854,7 @@ static void _form_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</form>",temp_2);
+    cat_str(temp,"</form>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -875,12 +865,11 @@ static int _input (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
         return Html_error;
     } else {
         cat_str("<input ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -893,12 +882,11 @@ static int _meta (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
         return Html_error;
     } else {
         cat_str("<meta ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -911,12 +899,11 @@ static int _link (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
         return Html_error;
     } else {
         cat_str("<link ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -929,7 +916,7 @@ static void _aside (const String aside){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<aside>",aside,temp);
-    cat_str(temp,"</aside>",temp_2);
+    cat_str(temp,"</aside>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -939,7 +926,7 @@ static void  _hr (){
     char temp[HTML_LONG];
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
-    cat_str("<hr>","",temp);
+    cat_str("<hr>","\n",temp);
     cat_str(temp,"",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
@@ -950,7 +937,7 @@ static void _br (){
     char temp[HTML_LONG];
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
-    cat_str("<br>","",temp);
+    cat_str("<br>","\n",temp);
     cat_str(temp,"",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
@@ -961,7 +948,7 @@ static void _pre (){
     char temp[HTML_LONG];
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
-    cat_str("<pre>","",temp);
+    cat_str("<pre>","\n",temp);
     cat_str(temp,"",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
@@ -973,7 +960,7 @@ static void _center (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<center>","",temp);
-    cat_str(temp,"</center>",temp_2);
+    cat_str(temp,"</center>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -984,17 +971,16 @@ static void _textarea (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<textarea>","",temp);
-        cat_str(temp,"</textarea>",temp_2);
+        cat_str(temp,"</textarea>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<textarea ",attributes,temp_4);
         cat_str(temp_4,">",temp);
-        cat_str(temp,"</textarea>",temp_2);
+        cat_str(temp,"</textarea>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -1006,7 +992,7 @@ static void _blockquote (const String block){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<blockquote>",block,temp);
-    cat_str(temp,"</blockquote>",temp_2);
+    cat_str(temp,"</blockquote>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1017,7 +1003,7 @@ static void _ol (const String ol){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<ol>",ol,temp);
-    cat_str(temp,"</ol>",temp_2);
+    cat_str(temp,"</ol>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1028,16 +1014,15 @@ static void _ol_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<ol>","",temp);
+        cat_str("<ol>","\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<ol ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -1050,7 +1035,7 @@ static void _ol_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</ol>",temp_2);
+    cat_str(temp,"</ol>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1061,7 +1046,7 @@ static void _ul (const String ul){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<ul>",ul,temp);
-    cat_str(temp,"</ul>",temp_2);
+    cat_str(temp,"</ul>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1072,16 +1057,15 @@ static void _ul_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<ul>","",temp);
+        cat_str("<ul>","\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<ul ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -1094,7 +1078,7 @@ static void _ul_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</ul>",temp_2);
+    cat_str(temp,"</ul>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1108,7 +1092,7 @@ static void _li (const String attributes, const String li){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<li>",li,temp);
-        cat_str(temp,"</li>",temp_2);
+        cat_str(temp,"</li>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -1116,7 +1100,7 @@ static void _li (const String attributes, const String li){
         cat_str("<li ",attributes,temp_4);
         cat_str(temp_4,">",temp);
         cat_str(temp,li,temp_5);
-        cat_str(temp_5,"</li>",temp_2);
+        cat_str(temp_5,"</li>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -1128,7 +1112,7 @@ static void _dl (const String _ddl){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<dl>",_ddl,temp);
-    cat_str(temp,"</dl>",temp_2);
+    cat_str(temp,"</dl>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1139,16 +1123,15 @@ static void _dl_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<dl>","",temp);
+        cat_str("<dl>","\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<dl ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -1161,7 +1144,7 @@ static void _dl_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</dl>",temp_2);
+    cat_str(temp,"</dl>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1172,7 +1155,7 @@ static void _dt (const String _ddt){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<dt>",_ddt,temp);
-    cat_str(temp,"</dt>",temp_2);
+    cat_str(temp,"</dt>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1183,16 +1166,15 @@ static void _dt_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<dt>","",temp);
+        cat_str("<dt>","\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<dt ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -1205,7 +1187,7 @@ static void _dt_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</dt>",temp_2);
+    cat_str(temp,"</dt>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1216,16 +1198,15 @@ static void _dd_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<dd>","",temp);
+        cat_str("<dd>","\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<dd ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -1238,7 +1219,7 @@ static void _dd_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</dd>",temp_2);
+    cat_str(temp,"</dd>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1249,7 +1230,7 @@ static void _figure (const String fig){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<figure>",fig,temp);
-    cat_str(temp,"</figure>",temp_2);
+    cat_str(temp,"</figure>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1260,16 +1241,15 @@ static void _figure_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<figure>","",temp);
+        cat_str("<figure>","\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<figure ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -1282,7 +1262,7 @@ static void _figure_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</figure>",temp_2);
+    cat_str(temp,"</figure>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1293,7 +1273,7 @@ static void _small (const String sm){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<small>",sm,temp);
-    cat_str(temp,"</small>",temp_2);
+    cat_str(temp,"</small>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1304,7 +1284,7 @@ static void _cite (const String ci){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<cite>",ci,temp);
-    cat_str(temp,"</cite>",temp_2);
+    cat_str(temp,"</cite>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1315,7 +1295,7 @@ static void _sub (const String su){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<sub>",su,temp);
-    cat_str(temp,"</sub>",temp_2);
+    cat_str(temp,"</sub>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1326,7 +1306,7 @@ static void _sup (const String sup){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<sup>",sup,temp);
-    cat_str(temp,"</sup>",temp_2);
+    cat_str(temp,"</sup>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1337,7 +1317,7 @@ static void _mark (const String mar){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<mark>",mar,temp);
-    cat_str(temp,"</mark>",temp_2);
+    cat_str(temp,"</mark>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1348,13 +1328,12 @@ static int _iframe (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
         return Html_error;
     } else {
         cat_str("<iframe ",attributes,temp_4);
         cat_str(temp_4,">",temp);
-        cat_str(temp,"</iframe>",temp_2);
+        cat_str(temp,"</iframe>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -1369,15 +1348,15 @@ static void _embed (const String attributes, const String em){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<embed>",em,temp);
-        cat_str(temp,"</embed>",temp_2);
+        cat_str(temp,"</embed>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<embed ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,em,temp_5);
-        cat_str(temp_5,"</embed>",temp_2);
+        cat_str(temp_5,"</embed>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -1392,7 +1371,7 @@ static void _audio (const String attributes, const String au){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<audio>",au,temp);
-        cat_str(temp,"</audio>",temp_2);
+        cat_str(temp,"</audio>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -1400,7 +1379,7 @@ static void _audio (const String attributes, const String au){
         cat_str("<audio ",attributes,temp_4);
         cat_str(temp_4,">",temp);
         cat_str(temp,au,temp_5);
-        cat_str(temp_5,"</audio>",temp_2);
+        cat_str(temp_5,"</audio>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -1412,7 +1391,7 @@ static void _table (const String t){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<table>",t,temp);
-    cat_str(temp,"</table>",temp_2);
+    cat_str(temp,"</table>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1423,16 +1402,15 @@ static void _table_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<table>","",temp);
+        cat_str("<table>","\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<table ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -1445,7 +1423,7 @@ static void _table_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</table>",temp_2);
+    cat_str(temp,"</table>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1456,7 +1434,7 @@ static void _tbody (const String tb){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<tbody>",tb,temp);
-    cat_str(temp,"</tbody>",temp_2);
+    cat_str(temp,"</tbody>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1467,16 +1445,15 @@ static void _tbody_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<tbody>","",temp);
+        cat_str("<tbody>\n","",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<tbody ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -1489,7 +1466,7 @@ static void _tbody_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</tbody>",temp_2);
+    cat_str(temp,"</tbody>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1500,7 +1477,7 @@ static void _thead (const String th){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<thead>",th,temp);
-    cat_str(temp,"</thead>",temp_2);
+    cat_str(temp,"</thead>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1511,16 +1488,15 @@ static void _thead_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<thead>","",temp);
+        cat_str("<thead>\n","",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<thead ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -1533,7 +1509,7 @@ static void _thead_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</thead>",temp_2);
+    cat_str(temp,"</thead>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1544,7 +1520,7 @@ static void _tfoot (const String tf){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<tfoot>",tf,temp);
-    cat_str(temp,"</tfoot>",temp_2);
+    cat_str(temp,"</tfoot>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1555,16 +1531,15 @@ static void _tfoot_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<tfoot>","",temp);
+        cat_str("<tfoot>","\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<tfoot ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -1577,7 +1552,7 @@ static void _tfoot_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</tfoot>",temp_2);
+    cat_str(temp,"</tfoot>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1591,15 +1566,15 @@ static void _tr (const String attributes, const String tr){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<tr>",tr,temp);
-        cat_str(temp,"</tr>",temp_2);
+        cat_str(temp,"</tr>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<tr ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,tr,temp_5);
-        cat_str(temp_5,"</tr>",temp_2);
+        cat_str(temp_5,"</tr>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -1614,15 +1589,15 @@ static void _td (const String attributes, const String td){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<td>",td,temp);
-        cat_str(temp,"</td>",temp_2);
+        cat_str(temp,"</td>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<td ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,td,temp_5);
-        cat_str(temp_5,"</td>",temp_2);
+        cat_str(temp_5,"</td>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -1637,15 +1612,15 @@ static void _th (const String attributes, const String th){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<th>",th,temp);
-        cat_str(temp,"</th>",temp_2);
+        cat_str(temp,"</th>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<th ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,th,temp_5);
-        cat_str(temp_5,"</th>",temp_2);
+        cat_str(temp_5,"</th>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -1660,7 +1635,7 @@ static void _label (const String attributes, const String label){
     char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<label>",label,temp);
-        cat_str(temp,"</label>",temp_2);
+        cat_str(temp,"</label>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -1668,7 +1643,7 @@ static void _label (const String attributes, const String label){
         cat_str("<label ",attributes,temp_4);
         cat_str(temp_4,">",temp);
         cat_str(temp,label,temp_5);
-        cat_str(temp_5,"</label>",temp_2);
+        cat_str(temp_5,"</label>\n",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
@@ -1680,7 +1655,7 @@ static void _select (const String sec){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<select>",sec,temp);
-    cat_str(temp,"</select>",temp_2);
+    cat_str(temp,"</select>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1691,16 +1666,15 @@ static void _select_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<select>","",temp);
+        cat_str("<select>","\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<select ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -1713,7 +1687,7 @@ static void _select_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</select>",temp_2);
+    cat_str(temp,"</select>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1724,7 +1698,18 @@ static void _option (const String ops){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<option>",ops,temp);
-    cat_str(temp,"</option>",temp_2);
+    cat_str(temp,"</option>\n",temp_2);
+    cat_str(true_html,"",temp_3);
+    cat_str(temp_2,"",result_html);
+    cat_str(temp_3,result_html,true_html);
+}
+
+static void _php (const String ops){
+    char temp[HTML_LONG];
+    char temp_2[HTML_LONG];
+    char temp_3[HTML_LONG];
+    cat_str("<?php",ops,temp);
+    cat_str(temp,"?>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1735,7 +1720,6 @@ static void _option_o (const String attributes){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
     if(attributes == NULL){
         cat_str("<option>","",temp);
         cat_str(temp,"",temp_2);
@@ -1744,7 +1728,7 @@ static void _option_o (const String attributes){
         cat_str(temp_3,result_html,true_html);
     } else {
         cat_str("<option ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
+        cat_str(temp_4,">\n",temp);
         cat_str(temp,"",temp_2);
         cat_str(true_html,"",temp_3);
         cat_str(temp_2,"",result_html);
@@ -1757,10 +1741,18 @@ static void _option_c (){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("","",temp);
-    cat_str(temp,"</option>",temp_2);
+    cat_str(temp,"</option>\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
+}
+
+static void coment_1 (){
+	cat_str("<!--","",true_html);
+}
+
+static void coment_2 (){
+	cat_str("-->\n","",true_html);
 }
 
 static void _caption (const String cap){
@@ -1768,7 +1760,90 @@ static void _caption (const String cap){
     char temp_2[HTML_LONG];
     char temp_3[HTML_LONG];
     cat_str("<caption>",cap,temp);
-    cat_str(temp,"</caption>",temp_2);
+    cat_str(temp,"</caption>\n",temp_2);
+    cat_str(true_html,"",temp_3);
+    cat_str(temp_2,"",result_html);
+    cat_str(temp_3,result_html,true_html);
+}
+
+static void _php_o (){
+    char temp[HTML_LONG];
+    char temp_2[HTML_LONG];
+    char temp_3[HTML_LONG];
+    char temp_4[HTML_LONG];
+    cat_str("<?php","",temp_4);
+    cat_str(temp_4,"\n",temp);
+    cat_str(temp,"",temp_2);
+    cat_str(true_html,"",temp_3);
+    cat_str(temp_2,"",result_html);
+    cat_str(temp_3,result_html,true_html);
+}
+
+static void _php_c (){
+    char temp[HTML_LONG];
+    char temp_2[HTML_LONG];
+    char temp_3[HTML_LONG];
+    cat_str("","",temp);
+    cat_str(temp,"?>\n",temp_2);
+    cat_str(true_html,"",temp_3);
+    cat_str(temp_2,"",result_html);
+    cat_str(temp_3,result_html,true_html);
+}
+
+static void _script_o (){
+    char temp[HTML_LONG];
+    char temp_2[HTML_LONG];
+    char temp_3[HTML_LONG];
+    char temp_4[HTML_LONG];
+    cat_str("<script>","",temp_4);
+    cat_str(temp_4,"\n",temp);
+    cat_str(temp,"",temp_2);
+    cat_str(true_html,"",temp_3);
+    cat_str(temp_2,"",result_html);
+    cat_str(temp_3,result_html,true_html);
+}
+
+static void _script_c (){
+    char temp[HTML_LONG];
+    char temp_2[HTML_LONG];
+    char temp_3[HTML_LONG];
+    cat_str("","",temp);
+    cat_str(temp,"</script>\n",temp_2);
+    cat_str(true_html,"",temp_3);
+    cat_str(temp_2,"",result_html);
+    cat_str(temp_3,result_html,true_html);
+}
+
+static void _style_o (){
+    char temp[HTML_LONG];
+    char temp_2[HTML_LONG];
+    char temp_3[HTML_LONG];
+    char temp_4[HTML_LONG];
+    cat_str("<style>","",temp_4);
+    cat_str(temp_4,"\n",temp);
+    cat_str(temp,"",temp_2);
+    cat_str(true_html,"",temp_3);
+    cat_str(temp_2,"",result_html);
+    cat_str(temp_3,result_html,true_html);
+}
+
+static void _style_c (){
+    char temp[HTML_LONG];
+    char temp_2[HTML_LONG];
+    char temp_3[HTML_LONG];
+    cat_str("","",temp);
+    cat_str(temp,"</style>\n",temp_2);
+    cat_str(true_html,"",temp_3);
+    cat_str(temp_2,"",result_html);
+    cat_str(temp_3,result_html,true_html);
+}
+
+static void _text (const String cap){
+    char temp[HTML_LONG];
+    char temp_2[HTML_LONG];
+    char temp_3[HTML_LONG];
+    cat_str("",cap,temp);
+    cat_str(temp,"\n",temp_2);
     cat_str(true_html,"",temp_3);
     cat_str(temp_2,"",result_html);
     cat_str(temp_3,result_html,true_html);
@@ -1806,6 +1881,14 @@ void _show_html_console (){
 }
 
 void ini_html (html * html){
+    html->php_o = _php_o;
+    html->php_c = _php_c;
+    html->script_o = _script_o;
+    html->script_c = _script_c;
+    html->style_o = _style_o;
+    html->style_c = _style_c;
+    html->php = _php;
+    html->text = _text;
     html->show_html_console = _show_html_console;
     html->view_html = viewHtml;
     html->title = _title;
@@ -1916,6 +1999,8 @@ void ini_html (html * html){
     html->b = _b;
     html->e = _e;
     html->em = _em;
+    html->coment_o = coment_1;
+    html->coment_c = coment_2;
     html->resetAllHTML = _delete;
 }
 
