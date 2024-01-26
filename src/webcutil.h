@@ -80,6 +80,47 @@ int create_file(const String name, const String data, const String read){
     return Ok;
 }
 
+static int _search (const char * texto){
+	char * word = GET_RESPONSE();
+	char *text_copy = strdup(word);
+    if (text_copy == NULL) {
+        return Error;
+    }
+    char *line = strtok(text_copy, "\n");
+    while (line != NULL) {
+        if (strstr(line, texto) != NULL) {
+            free(text_copy);
+            return Ok;
+        }
+        line = strtok(NULL, "\n");
+    }
+    free(text_copy);
+    return Error;
+}
+
+int _get_platform (const char * texto){
+	char * word = GET_RESPONSE();
+	char *text_copy = strdup(word);
+    if (text_copy == NULL) {
+        return Web_error;
+    }
+    char *line = strtok(text_copy, "\n");
+    while (line != NULL) {
+        if (strstr(line, texto) != NULL) {
+            free(text_copy);
+            return Web_ok;
+        }
+        line = strtok(NULL, "\n");
+    }
+    free(text_copy);
+    return Web_error;
+}
+
+void ini_get (requestUrls * g){
+	g->search = _search;
+	g->get_platform = _get_platform;
+}
+
 void split_lines(const char *text){
     char *text_copy = strdup(text);
     char *line = strtok(text_copy, "\n");
@@ -648,31 +689,6 @@ char * get(const char *text, const char *word, int ini, int end_index, server *s
     return Web_error;
 }
 
-String getPlatform (){
-    String text = GET_RESPONSE();
-    String word = "sec-ch-ua-platform: ";
-    int ini = 20;
-    int end_index = 10;
-    String text_copy = strdup(text);
-    String line = strtok(text_copy, "\n");
-    while (line != NULL){
-        String word_position = strstr(line, word);
-        if (word_position != NULL){
-            size_t start_index = word_position + ini - line;
-            if (start_index <= strlen(line)){
-                String result = malloc(end_index + 1);
-                strncpy(result, line + start_index, end_index);
-                result[end_index] = '\0';
-                free(text_copy);
-                return result;
-            }
-        }
-        line = strtok(NULL, "\n");
-    }
-    free(text_copy);
-    return Web_error;
-}
-
 int send_email(email *email){
     CURL *curl;
     CURLcode res = CURLE_OK;
@@ -937,12 +953,12 @@ int permission_download_file (files * f, server * server){
     
 }
 
-int save_response(const char *data, const char * namefile){
+int save_response(const char * namefile){
     FILE *fp = fopen(namefile, "a");
     if (fp == NULL){
         return Web_error;
     }
-    fprintf(fp, "%s", data);
+    fprintf(fp, "%s", GET_RESPONSE());
     fclose(fp);
     return Web_ok;
 }
@@ -1100,6 +1116,10 @@ int open_server(server *server){
         perror("");
         return Error;
     }
+}
+
+String getUrl (){
+	
 }
 
 int send_response_server (server *server, const char *archivo){

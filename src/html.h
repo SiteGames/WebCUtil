@@ -1828,7 +1828,81 @@ void _show_html_console (){
     printf("HTML send(length: %ld): %s\n",strlen(true_html),true_html);
 }
 
+static void _script_src (const String archivo, server * s, int op){
+	char archivo1[200];
+	char contentJs[s->buffer_file];
+	char temp[HTML_LONG];
+    char temp_2[HTML_LONG];
+    char temp_3[HTML_LONG];
+    char temp_4[HTML_LONG];
+    char temp_5[HTML_LONG];
+    cat_str(archivo,".js",archivo1);
+	FILE * fp = fopen(archivo1,"r");
+	if(fp == NULL){
+		perror("WebCUtil ");
+		return;
+	} else{
+		size_t html_size = fread(contentJs, sizeof(char), s->buffer_file, fp);
+		if(op == 0){
+            cat_str("","",temp);
+            cat_str(temp,"<script>\n",temp_2);
+            cat_str(temp_2,contentJs,temp_3);
+            cat_str(temp_3,"\n</script>\n",temp_4);
+            cat_str(true_html,"",temp_5);
+            cat_str(temp_4,"",result_html);
+            cat_str(temp_5,result_html,true_html);
+		} else if(op == 1) {
+			cat_str("","",temp);
+			cat_str(temp,"",temp_2);
+			cat_str(temp_2,contentJs,temp_3);
+			cat_str(temp_3,"\n",temp_4);
+			cat_str(true_html,"",temp_5);
+			cat_str(temp_4,"",result_html);
+			cat_str(temp_5,result_html,true_html);
+		}
+	}
+	fclose(fp);
+}
+
+static void _style_src (const String archivo, server * s, int op){
+	char archivo1[200];
+	char contentCss[s->buffer_file];
+	char temp[HTML_LONG];
+    char temp_2[HTML_LONG];
+    char temp_3[HTML_LONG];
+    char temp_4[HTML_LONG];
+    char temp_5[HTML_LONG];
+    cat_str(archivo,".css",archivo1);
+	FILE * fp = fopen(archivo1,"r");
+	if(fp == NULL){
+		perror("WebCUtil ");
+		return;
+	} else{
+		size_t html_size = fread(contentCss, sizeof(char), s->buffer_file, fp);
+		if(op == 0){
+            cat_str("","",temp);
+            cat_str(temp,"<style>\n",temp_2);
+            cat_str(temp_2,contentCss,temp_3);
+            cat_str(temp_3,"\n</style>\n",temp_4);
+            cat_str(true_html,"",temp_5);
+            cat_str(temp_4,"",result_html);
+            cat_str(temp_5,result_html,true_html);
+		} else if(op == 1) {
+			cat_str("","",temp);
+			cat_str(temp,"",temp_2);
+			cat_str(temp_2,contentCss,temp_3);
+			cat_str(temp_3,"\n",temp_4);
+			cat_str(true_html,"",temp_5);
+			cat_str(temp_4,"",result_html);
+			cat_str(temp_5,result_html,true_html);
+		}
+	}
+	fclose(fp);
+}
+
 void ini_html (html * html){
+    html->script_src = _script_src;
+    html->style_src = _style_src;
     html->php_o = _php_o;
     html->php_c = _php_c;
     html->script_o = _script_o;

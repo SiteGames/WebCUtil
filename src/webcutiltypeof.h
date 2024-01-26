@@ -143,7 +143,7 @@ typedef struct {
     void (*em)(const String, const String);
     void (*button)(const String, const String);
     void (*script)(const String, const String);
-    void (*script_src)(const String, int);
+    void (*script_src)(const String, server *, int);
     void (*div)(const String);
     void (*div_o)(const String, const String);
     void (*div_c)();
@@ -242,9 +242,15 @@ typedef struct {
     void (*script_c)();
     void (*style_o)();
     void (*style_c)();
+    void (*style_src)(const String, server *, int);
     void (*php)(const String);
     void (*text)(const String);
     int (*send)(server *, int);
 }html;
+
+typedef struct {
+	int (*search)(const char *);
+	int (*get_platform)();
+}requestUrls;
 
 #endif
