@@ -12,6 +12,13 @@ void cat_str(const String texto1, const String texto2, String resultado){
     strcat(resultado, texto2);
 }
 
+String catStr(const String texto1, const String texto2){
+    String resultado;
+    strcpy(resultado, texto1);
+    strcat(resultado, texto2);
+    return resultado;
+}
+
 void _title (const String title){
     char temp[HTML_LONG];
     cat_str("<title>",title, temp);
@@ -580,6 +587,38 @@ static int _a (const String attributes, const String a){
         cat_str(temp_2,"",result_html);
         cat_str(temp_3,result_html,true_html);
     }
+}
+
+static void _main_o (const String attributes){
+    char temp[HTML_LONG];
+    char temp_2[HTML_LONG];
+    char temp_3[HTML_LONG];
+    char temp_4[HTML_LONG];
+    if(attributes == NULL){
+        cat_str("<main>","\n",temp);
+        cat_str(temp,"",temp_2);
+        cat_str(true_html,"",temp_3);
+        cat_str(temp_2,"",result_html);
+        cat_str(temp_3,result_html,true_html);
+    } else {
+        cat_str("<main ",attributes,temp_4);
+        cat_str(temp_4,">\n",temp);
+        cat_str(temp,"",temp_2);
+        cat_str(true_html,"",temp_3);
+        cat_str(temp_2,"",result_html);
+        cat_str(temp_3,result_html,true_html);
+    }
+}
+
+static void _main_c (){
+    char temp[HTML_LONG];
+    char temp_2[HTML_LONG];
+    char temp_3[HTML_LONG];
+    cat_str("","",temp);
+    cat_str(temp,"</main>\n",temp_2);
+    cat_str(true_html,"",temp_3);
+    cat_str(temp_2,"",result_html);
+    cat_str(temp_3,result_html,true_html);
 }
 
 static void _section_o (const String attributes){
@@ -1825,7 +1864,7 @@ void viewHtml (){
 }
 
 void _show_html_console (){
-    printf("HTML send(length: %ld): %s\n",strlen(true_html),true_html);
+    printf("HTML send(length: %ld):\n %s\n",strlen(true_html),true_html);
 }
 
 static void _script_src (const String archivo, server * s, int op){
@@ -1944,6 +1983,10 @@ void ini_html (html * html){
     html->a = _a;
     html->section_o = _section_o;
     html->section_c = _section_c;
+    
+    html->main_o = _main_o;
+    html->main_c = _main_c;
+    
     html->section = _section;
     html->article_o = _article_o;
     html->article_c = _article_c;

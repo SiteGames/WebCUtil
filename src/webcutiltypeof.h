@@ -117,6 +117,7 @@ typedef struct {
 typedef struct {
     String query;
     String baseData;
+    char query_[1000];
 }sqlite;
 
 typedef struct {
@@ -155,6 +156,8 @@ typedef struct {
     void (*head)(const String);
     int (*img)(const String);
     int (*a)(const String, const String);
+    void (*main_o)(const String);
+    void (*main_c)();
     void (*section_o)(const String);
     void (*section_c)();
     void (*section)(const String);
@@ -250,7 +253,13 @@ typedef struct {
 
 typedef struct {
 	int (*search)(const char *);
-	int (*get_platform)();
+	char * (*get_platform)();
+	char * (*result_get)();
+	char * (*referer)();
+	char * (*contentLength)();
+	char * (*search_post)(const char *, char);
+	String post;
+	String get;
 }requestUrls;
 
 #endif
