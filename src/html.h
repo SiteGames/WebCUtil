@@ -12,6 +12,17 @@ void cat_str(const String texto1, const String texto2, String resultado){
     strcat(resultado, texto2);
 }
 
+void concatplus(char* result, const char* format, ...) {
+    va_list args;
+    va_start(args, format);
+    va_list args_copy;
+    va_copy(args_copy, args);
+    int length = vsnprintf(NULL, 0, format, args_copy);
+    va_end(args_copy);
+    vsnprintf(result, length + 1, format, args);
+    va_end(args);
+}
+
 String catStr(const String texto1, const String texto2){
     String resultado;
     strcpy(resultado, texto1);
@@ -20,1820 +31,1130 @@ String catStr(const String texto1, const String texto2){
 }
 
 void _title (const String title){
-    char temp[HTML_LONG];
-    cat_str("<title>",title, temp);
-    cat_str(temp,"</title>\n",result_html);
-    cat_str(result_html,"",true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<title>%s</title>\n",title);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _canvas_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<canvas>","\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<canvas>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<canvas ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<canvas %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _canvas_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</canvas>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</canvas>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _html_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<!DOCTYPE html><html>\n","",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<!DOCTYPE html>\n<html>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<!DOCTYPE html><html ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<!DOCTYPE html>\n<html %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _html_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</html>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</html>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _center_open (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<center>","\n",temp);
-    cat_str(temp,"",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<center>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _center_close (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</center>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</center>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _h1 (const String attributes, const String h1){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<h1>",h1,temp);
-        cat_str(temp,"</h1>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<h1>%s</h1>\n",h1);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<h1 ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,h1,temp_5);
-        cat_str(temp_5,"</h1>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<h1 %s >%s</h1>\n",attributes,h1);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _h2 (const String attributes, const String h2){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<h2>",h2,temp);
-        cat_str(temp,"</h2>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<h2>%s</h2>\n",h2);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<h2 ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,h2,temp_5);
-        cat_str(temp_5,"</h2>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<h2 %s >%s</h2>\n",attributes,h2);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _h3 (const String attributes, const String h3){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<h3>",h3,temp);
-        cat_str(temp,"</h3>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<h3>%s</h3>\n",h3);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<h3 ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,h3,temp_5);
-        cat_str(temp_5,"</h3>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<h3 %s >%s</h3>\n",attributes,h3);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _h4 (const String attributes, const String h4){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<h4>",h4,temp);
-        cat_str(temp,"</h4>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<h4>%s</h4>\n",h4);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<h4 ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,h4,temp_5);
-        cat_str(temp_5,"</h4>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<h4 %s >%s</h4>\n",attributes,h4);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _h5 (const String attributes, const String h5){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<h5>",h5,temp);
-        cat_str(temp,"</h5>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<h5>%s</h5>\n",h5);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<h5 ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,h5,temp_5);
-        cat_str(temp_5,"</h5>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<h5 %s >%s</h5>\n",attributes,h5);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _h6 (const String attributes, const String h6){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<h6>",h6,temp);
-        cat_str(temp,"</h6>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<h6>%s</h6>\n",h6);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<h6 ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,h6,temp_5);
-        cat_str(temp_5,"</h6>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<h6 %s >%s</h6>\n",attributes,h6);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _i (const String attributes, const String i){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<i>",i,temp);
-        cat_str(temp,"</i>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<i>%s</i>\n",i);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<i ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,i,temp_5);
-        cat_str(temp_5,"</i>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<i %s >%s</i>\n",attributes,i);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 static void _b (const String attributes, const String b){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<b>",b,temp);
-        cat_str(temp,"</b>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<b>%s</b>\n",b);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<b ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,b,temp_5);
-        cat_str(temp_5,"</b>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<b %s >%s</b>\n",attributes,b);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 static void _e (const String attributes, const String e){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<e>",e,temp);
-        cat_str(temp,"</e>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<e>%s</e>\n",e);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<e ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,e,temp_5);
-        cat_str(temp_5,"</e>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<e %s >%s</e>\n",attributes,e);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 static void _em (const String attributes, const String em){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<em>",em,temp);
-        cat_str(temp,"</em>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<em>%s</em>\n",em);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<em ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,em,temp_5);
-        cat_str(temp_5,"</em>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<em %s >%s</em>\n",attributes,em);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _p (const String attributes, const String p){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<p>",p,temp);
-        cat_str(temp,"</p>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<p>%s</p>\n",p);
+    	cat_str(true_html,"",tmp1);
+    	cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<p ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,p,temp_5);
-        cat_str(temp_5,"</p>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<p %s >%s</p>\n",attributes,p);
+    	cat_str(true_html,"",tmp1);
+    	cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _button (const String attributes, const String button){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<button>",button,temp);
-        cat_str(temp,"</button>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<button>%s</button>\n",button);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<button ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,button,temp_5);
-        cat_str(temp_5,"</button>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<button %s >%s</button>\n",attributes,button);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _script (const String attributes, const String script){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<script>",script,temp);
-        cat_str(temp,"</script>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<script>%s</script>\n",script);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<script ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,script,temp_5);
-        cat_str(temp_5,"</script>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<script %s >%s</script>\n",attributes,script);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _style (const String style){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<style>",style,temp);
-    cat_str(temp,"</style>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<style>%s</style>\n",style);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _div (const String div){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<div ",div,temp);
-    cat_str(temp,"></div>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<div>%s</div>\n",div);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
-static void _div_o (const String attributes, const String t){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+static void _div_o (const String attributes){
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        if(t == NULL){
-            printf("WebCUtils: the second param is 'NULL'\n");
-            return;
-        }
-        cat_str("<div>",t,temp);
-        cat_str(temp,"\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<div>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        if(t == NULL){
-            printf("WebCUtils: the second param is 'NULL'\n");
-            return;
-        }
-        cat_str("<div ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,t,temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<div %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _div_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</div>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</div>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _body_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<body>","\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<body>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<body ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<body %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 static void _body_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</body>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</body>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _body (const String body){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<body>",body,temp);
-    cat_str(temp,"</body>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<body>%s</body>\n",body);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _head_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<head>","\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<head>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<head ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<head %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _head_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</head>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</head>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _head (const String head){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<head>",head,temp);
-    cat_str(temp,"</head>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<head>%s</head>\n",head);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static int _img (const String attributes){
     if(attributes == NULL){
         return Html_error;
     } else {
-        char temp[HTML_LONG];
-        char temp_2[HTML_LONG];
-        char temp_3[HTML_LONG];
-        cat_str("<img ",attributes,temp);
-        cat_str(temp,">\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+        char tmp1[HTML_LONG];
+        concatplus(result_html,"<img %s />\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static int _a (const String attributes, const String a){
-    if (attributes == NULL){
-        return Html_error;
+    char tmp1[HTML_LONG];
+    if(attributes == NULL){
+    	concatplus(result_html,"<a>%s</a>\n",a);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        char temp[HTML_LONG];
-        char temp_2[HTML_LONG];
-        char temp_3[HTML_LONG];
-        char temp_4[HTML_LONG];
-        char temp_5[HTML_LONG];
-        cat_str("<a ",attributes,temp);
-        cat_str(temp,">",temp_4);
-        cat_str(temp_4,a,temp_5);
-        cat_str(temp_5,"</a>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<a %s >%s</a>\n",attributes,a);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _main_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<main>","\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<main>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<main ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<main %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _main_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</main>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</main>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _section_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<section>","\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<section>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<section ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<section %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _section_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</section>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</section>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _section (const String section){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<section ",section,temp);
-    cat_str(temp,"></section>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<section>%s</section>\n",section);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _article_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<article>","\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<article>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<article ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<article %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _article_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</article>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</article>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _article (const String article){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<article>",article,temp);
-    cat_str(temp,"</article>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<article>%s</article>\n",article);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _header_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<header>","\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<header>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<header ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<header %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _header_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</header>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</header>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _header (const String header){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<header>",header,temp);
-    cat_str(temp,"</header>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<header>%s</header>\n",header);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _footer (const String footer){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<footer>",footer,temp);
-    cat_str(temp,"</footer>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<footer %s >%s</footer>\n",footer);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _footer_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<footer>","",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<footer>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<footer ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<footer %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _footer_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</footer>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</footer>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
-static void _video (const String video){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<video>",video,temp);
-    cat_str(temp,"</video>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+static void _video (const String attributes, const String video){
+    char tmp1[HTML_LONG];
+    if(attributes == NULL){
+    	concatplus(result_html,"<video>%s</video>\n",video);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
+    } else {
+    	concatplus(result_html,"<video %s >%s</video>\n",attributes,video);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
+    }
 }
 
 static void _form (const String from){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<footer>",from,temp);
-    cat_str(temp,"</footer>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<form>%s</form>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _form_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<form>","\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<form>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<form ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<form %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _form_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</form>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</form>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static int _input (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        return Html_error;
+    	concatplus(result_html,"<input />\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<input ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<input %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static int _meta (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        return Html_error;
+    	concatplus(result_html,"<meta />\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<meta ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<meta %s />\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static int _link (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        return Html_error;
+    	concatplus(result_html,"<link />\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<link ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<link %s />\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
-static void _aside (const String aside){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<aside>",aside,temp);
-    cat_str(temp,"</aside>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+static void _aside (const String attributes, const String aside){
+    char tmp1[HTML_LONG];
+    if(attributes == NULL){
+    	concatplus(result_html,"<aside> %s </aside>\n",aside);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
+    } else {
+    	concatplus(result_html,"<aside %s >%s</aside>\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
+    }
 }
 
 static void  _hr (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<hr>","\n",temp);
-    cat_str(temp,"",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<hr>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _br (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<br>","\n",temp);
-    cat_str(temp,"",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<br>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _pre (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<pre>","\n",temp);
-    cat_str(temp,"",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<pre>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _center (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<center>","",temp);
-    cat_str(temp,"</center>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<center></center>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _textarea (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<textarea>","",temp);
-        cat_str(temp,"</textarea>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<textarea></textarea>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<textarea ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,"</textarea>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<textarea %s ></textarea>\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _blockquote (const String block){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<blockquote>",block,temp);
-    cat_str(temp,"</blockquote>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<blockquote>%s</blockquote>\n",block);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _ol (const String ol){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<ol>",ol,temp);
-    cat_str(temp,"</ol>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<ol>%s</ol>\n",ol);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _ol_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<ol>","\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<ol>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<ol ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<ol %s>\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _ol_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</ol>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</ol>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _ul (const String ul){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<ul>",ul,temp);
-    cat_str(temp,"</ul>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<ul>%s</ul>\n",ul);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _ul_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<ul>","\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<ul>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<ul ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<ul %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _ul_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</ul>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</ul>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _li (const String attributes, const String li){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<li>",li,temp);
-        cat_str(temp,"</li>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<li>%s</li>\n",li);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<li ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,li,temp_5);
-        cat_str(temp_5,"</li>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<li %s >%s</li>\n",attributes,li);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _dl (const String _ddl){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<dl>",_ddl,temp);
-    cat_str(temp,"</dl>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<dl>%s</dl>\n",_ddl);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _dl_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<dl>","\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<dl>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<dl ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<dl %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _dl_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</dl>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</dl>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _dt (const String _ddt){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<dt>",_ddt,temp);
-    cat_str(temp,"</dt>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<dt>%s</dt>\n",_ddt);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _dt_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<dt>","\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<dt>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<dt ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<dt %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _dt_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</dt>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</dt>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _dd_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<dd>","\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<dd>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<dd ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<dd %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _dd_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</dd>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</dd>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _figure (const String fig){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<figure>",fig,temp);
-    cat_str(temp,"</figure>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<figure>%s</figure>\n",fig);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _figure_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<figure>","\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<figure>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<figure ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<figure %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _figure_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</figure>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</figure>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _small (const String sm){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<small>",sm,temp);
-    cat_str(temp,"</small>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<small>%s</small>\n",sm);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _cite (const String ci){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<cite>",ci,temp);
-    cat_str(temp,"</cite>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<cite>%s</cite>\n",ci);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _sub (const String su){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<sub>",su,temp);
-    cat_str(temp,"</sub>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<sub>%s</sub>\n",su);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _sup (const String sup){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<sup>",sup,temp);
-    cat_str(temp,"</sup>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<sup>%s</sup>\n",sup);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _mark (const String mar){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<mark>",mar,temp);
-    cat_str(temp,"</mark>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<mark>%s</mark>\n",mar);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static int _iframe (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        return Html_error;
+    	concatplus(result_html,"<iframe />\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<iframe ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,"</iframe>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<iframe %s />\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _embed (const String attributes, const String em){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<embed>",em,temp);
-        cat_str(temp,"</embed>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<embed>%s</embed>\n",em);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<embed ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,em,temp_5);
-        cat_str(temp_5,"</embed>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<embed %s >%s</embed>\n",attributes,em);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
-static void _audio (const String attributes, const String au){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+static void _audio (const String attributes, const String source){
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<audio>",au,temp);
-        cat_str(temp,"</audio>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<audio><source %s ></source></audio>\n",source);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<audio ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,au,temp_5);
-        cat_str(temp_5,"</audio>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<audio %s ><source %s ></source></audio>\n",attributes,source);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _table (const String t){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<table>",t,temp);
-    cat_str(temp,"</table>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<table >%s</table>\n",t);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _table_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<table>","\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<table>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<table ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<table %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _table_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</table>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</table>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _tbody (const String tb){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<tbody>",tb,temp);
-    cat_str(temp,"</tbody>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<tbody>%s</tbody>\n",tb);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _tbody_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<tbody>\n","",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<tbody>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<tbody ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<tbody %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _tbody_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</tbody>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</tbody>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _thead (const String th){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<thead>",th,temp);
-    cat_str(temp,"</thead>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<thead>%s</thead>\n",th);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _thead_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<thead>\n","",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<thead>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<thead ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<thead %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _thead_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</thead>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</thead>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _tfoot (const String tf){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<tfoot>",tf,temp);
-    cat_str(temp,"</tfoot>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<tfoot>%s</tfoot>\n",tf);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _tfoot_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<tfoot>","\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<tfoot>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<tfoot ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<tfoot %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _tfoot_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</tfoot>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</tfoot>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _tr (const String attributes, const String tr){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
-    if(attributes == NULL){
-        cat_str("<tr>",tr,temp);
-        cat_str(temp,"</tr>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
-    } else {
-        cat_str("<tr ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,tr,temp_5);
-        cat_str(temp_5,"</tr>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
-    }
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<tr %s >%s</tr>\n",attributes,tr);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _td (const String attributes, const String td){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
-    if(attributes == NULL){
-        cat_str("<td>",td,temp);
-        cat_str(temp,"</td>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
-    } else {
-        cat_str("<td ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,td,temp_5);
-        cat_str(temp_5,"</td>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
-    }
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<td %s >%s</td>\n",attributes,td);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _th (const String attributes, const String th){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<th>",th,temp);
-        cat_str(temp,"</th>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<th>%s</th>\n",th);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<th ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,th,temp_5);
-        cat_str(temp_5,"</th>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<th %s >%s</th>\n",attributes,th);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _label (const String attributes, const String label){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<label>",label,temp);
-        cat_str(temp,"</label>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<label>%s</label>\n",label);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<label ",attributes,temp_4);
-        cat_str(temp_4,">",temp);
-        cat_str(temp,label,temp_5);
-        cat_str(temp_5,"</label>\n",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<label %s >%s</label>\n",attributes,label);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _select (const String sec){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<select>",sec,temp);
-    cat_str(temp,"</select>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<select>%s</select>\n",sec);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _select_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<select>","\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<select>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<select ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<select %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _select_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</select>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</select>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _option (const String ops){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<option>",ops,temp);
-    cat_str(temp,"</option>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<option>%s</option>\n",ops);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _php (const String ops){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<?php",ops,temp);
-    cat_str(temp,"?>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<?php %s ?>\n",ops);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _option_o (const String attributes){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
+    char tmp1[HTML_LONG];
     if(attributes == NULL){
-        cat_str("<option>","",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<option>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     } else {
-        cat_str("<option ",attributes,temp_4);
-        cat_str(temp_4,">\n",temp);
-        cat_str(temp,"",temp_2);
-        cat_str(true_html,"",temp_3);
-        cat_str(temp_2,"",result_html);
-        cat_str(temp_3,result_html,true_html);
+    	concatplus(result_html,"<option %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
     }
 }
 
 static void _option_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</option>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</option>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void coment_1 (){
-	cat_str("<!--","",true_html);
+	char tmp1[HTML_LONG];
+    concatplus(result_html,"<!--\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void coment_2 (){
-	cat_str("-->\n","",true_html);
+	char tmp1[HTML_LONG];
+    concatplus(result_html,"-->\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _caption (const String cap){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("<caption>",cap,temp);
-    cat_str(temp,"</caption>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<caption >%s</caption>\n",cap);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _php_o (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    cat_str("<?php","",temp_4);
-    cat_str(temp_4,"\n",temp);
-    cat_str(temp,"",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<php \n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _php_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"?>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"?>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _script_o (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    cat_str("<script>","",temp_4);
-    cat_str(temp_4,"\n",temp);
-    cat_str(temp,"",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<script>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _script_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</script>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</script>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _style_o (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    cat_str("<style>","",temp_4);
-    cat_str(temp_4,"\n",temp);
-    cat_str(temp,"",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"<style>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _style_c (){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("","",temp);
-    cat_str(temp,"</style>\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</style>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static void _text (const String cap){
-    char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    cat_str("",cap,temp);
-    cat_str(temp,"\n",temp_2);
-    cat_str(true_html,"",temp_3);
-    cat_str(temp_2,"",result_html);
-    cat_str(temp_3,result_html,true_html);
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"%s\n",cap);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
 }
 
 static int _send_html (server * server, int js_on){
@@ -1864,17 +1185,13 @@ void viewHtml (){
 }
 
 void _show_html_console (){
-    printf("HTML send(length: %ld):\n %s\n",strlen(true_html),true_html);
+    printf("HTML send(length: %ld):\n%s\n",strlen(true_html),true_html);
 }
 
 static void _script_src (const String archivo, server * s, int op){
 	char archivo1[200];
 	char contentJs[s->buffer_file];
-	char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+	char tmp1[HTML_LONG];
     cat_str(archivo,".js",archivo1);
 	FILE * fp = fopen(archivo1,"r");
 	if(fp == NULL){
@@ -1883,21 +1200,13 @@ static void _script_src (const String archivo, server * s, int op){
 	} else{
 		size_t html_size = fread(contentJs, sizeof(char), s->buffer_file, fp);
 		if(op == 0){
-            cat_str("","",temp);
-            cat_str(temp,"<script>\n",temp_2);
-            cat_str(temp_2,contentJs,temp_3);
-            cat_str(temp_3,"\n</script>\n",temp_4);
-            cat_str(true_html,"",temp_5);
-            cat_str(temp_4,"",result_html);
-            cat_str(temp_5,result_html,true_html);
+		    concatplus(result_html,"<script>\n%s\n</script>\n",contentJs);
+            cat_str(true_html,"",tmp1);
+            cat_str(tmp1,result_html,true_html);
 		} else if(op == 1) {
-			cat_str("","",temp);
-			cat_str(temp,"",temp_2);
-			cat_str(temp_2,contentJs,temp_3);
-			cat_str(temp_3,"\n",temp_4);
-			cat_str(true_html,"",temp_5);
-			cat_str(temp_4,"",result_html);
-			cat_str(temp_5,result_html,true_html);
+			concatplus(result_html,"%s\n",contentJs);
+            cat_str(true_html,"",tmp1);
+            cat_str(tmp1,result_html,true_html);
 		}
 	}
 	fclose(fp);
@@ -1905,35 +1214,23 @@ static void _script_src (const String archivo, server * s, int op){
 
 static void _style_src (const String archivo, server * s, int op){
 	char archivo1[200];
-	char contentCss[s->buffer_file];
-	char temp[HTML_LONG];
-    char temp_2[HTML_LONG];
-    char temp_3[HTML_LONG];
-    char temp_4[HTML_LONG];
-    char temp_5[HTML_LONG];
+	char contentJs[s->buffer_file];
+	char tmp1[HTML_LONG];
     cat_str(archivo,".css",archivo1);
 	FILE * fp = fopen(archivo1,"r");
 	if(fp == NULL){
 		perror("WebCUtil ");
 		return;
 	} else{
-		size_t html_size = fread(contentCss, sizeof(char), s->buffer_file, fp);
+		size_t html_size = fread(contentJs, sizeof(char), s->buffer_file, fp);
 		if(op == 0){
-            cat_str("","",temp);
-            cat_str(temp,"<style>\n",temp_2);
-            cat_str(temp_2,contentCss,temp_3);
-            cat_str(temp_3,"\n</style>\n",temp_4);
-            cat_str(true_html,"",temp_5);
-            cat_str(temp_4,"",result_html);
-            cat_str(temp_5,result_html,true_html);
+		    concatplus(result_html,"<style>\n%s\n</style>\n",contentJs);
+            cat_str(true_html,"",tmp1);
+            cat_str(tmp1,result_html,true_html);
 		} else if(op == 1) {
-			cat_str("","",temp);
-			cat_str(temp,"",temp_2);
-			cat_str(temp_2,contentCss,temp_3);
-			cat_str(temp_3,"\n",temp_4);
-			cat_str(true_html,"",temp_5);
-			cat_str(temp_4,"",result_html);
-			cat_str(temp_5,result_html,true_html);
+			concatplus(result_html,"%s\n",contentJs);
+            cat_str(true_html,"",tmp1);
+            cat_str(tmp1,result_html,true_html);
 		}
 	}
 	fclose(fp);
@@ -1983,10 +1280,8 @@ void ini_html (html * html){
     html->a = _a;
     html->section_o = _section_o;
     html->section_c = _section_c;
-    
     html->main_o = _main_o;
     html->main_c = _main_c;
-    
     html->section = _section;
     html->article_o = _article_o;
     html->article_c = _article_c;
