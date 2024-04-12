@@ -50,6 +50,13 @@ static int _save_response(const char *namefile)
 	return Web_ok;
 }
 
+String to_str (int entero){
+	int len = snprintf(NULL, 0, "%d", entero);
+	String str = malloc(len + 1);
+	snprintf(str, len + 1, "%d", entero);
+	return str;
+}
+
 static void _decrypt(char *message, int shift)
 {
 	char *ptr = message;
