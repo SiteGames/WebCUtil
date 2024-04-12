@@ -1,8 +1,8 @@
-name: Source code WebCUtils
+name: Source code WebCUtils (sessions)
 on:
   push:
     branches:
-      - main
+      - sessions
 
 jobs:
   publish_source:
@@ -12,10 +12,10 @@ jobs:
       - name: Checkout del repositorio
         uses: actions/checkout@v3
 
-      - name: Comprimir código
+      - name: Comprime codigo
         run: zip -r source_code.zip .
 
-      - name: Publicar archivo ZIP
+      - name: Publica el zip
         uses: actions/upload-artifact@v3
         with:
           name: Source code.zip

@@ -24,11 +24,11 @@ int main(int argc, char *argv[]){
 	servidor.buffer_file = 6094;
 	open_server(&servidor);
 	while(Web_ok){
-		html index_page;
-        ini_html(&index_page);
-        index(&index_page);
-        index_page.send(&servidor,Js_errors_on);
-        printf("%s",servidor.load_buffer());
+	     html index_page;
+             ini_html(&index_page);
+             index(&index_page);
+             index_page.send(&servidor);
+             servidor.showBuffer();
 	}
 	return 0;
 }
