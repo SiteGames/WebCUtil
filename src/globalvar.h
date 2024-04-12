@@ -140,4 +140,9 @@ enum others {
     Localhost_url_length = 200,
 };
 
+typedef enum {
+    false,
+    true
+}bool;
+
 #endif
