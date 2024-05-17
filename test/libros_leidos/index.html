@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>%s</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #444;
+    padding: 10px 0;
+}
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 20px;
+}
+nav a:hover {
+    text-decoration: underline;
+}
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+form {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+form label,
+form input,
+form textarea {
+    display: block;
+    margin-bottom: 10px;
+}
+form input,
+form textarea {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+form button {
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+form button:hover {
+    background-color: #555;
+}
+</style>
+</head>
+<body>
+<header>
+    <h1>Mi Biblioteca</h1>
+</header>
+<nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="libros-guardados.c">Libros Guardados</a>
+</nav>
+<div class="container">
+    <h2>Agregar Nuevo Libro</h2>
+    <form method="POST" action="">
+        <label for="nombre">Nombre del Libro:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <label for="pagina">Página Actual:</label>
+        <input type="number" id="pagina" name="pagina" required>
+        <label for="extras">Datos Extras:</label>
+        <textarea id="extras" name="extras" rows="4" required></textarea>
+        <button type="submit">Guardar</button>
+    </form>
+</div>
+</body>
+</html>
