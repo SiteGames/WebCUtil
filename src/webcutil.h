@@ -11,7 +11,8 @@
 #include <openssl/ssl.h>
 #include <openssl/bio.h>
 #include <openssl/err.h>
-#include <netdb.h> 
+#include <netdb.h>
+#include <sys/stat.h>
 #include <sys/socket.h> 
 #include <sys/types.h> 
 #include <arpa/inet.h>
@@ -21,6 +22,7 @@
 #include "globalvar.h"
 #include "server.h"
 #include "html.h"
+#include "chtml.h" 
 #include "sessions.h"
 #include "http.h"
 #include "files.h"
