@@ -38,6 +38,206 @@ typedef struct
 	int (*saveBuffer)(const String);
 } server;
 
+typedef struct {
+	void (*save)(const String, const String, const String, const String);
+	int (*delete)(const String);
+	char dat[2024];
+	String nameData;
+	String (*getValue)(const String, const String, const String);
+	void (*resetData)(const String);
+	String (*getDat)(const String);
+}Properties;
+
+void _resetData (const String s){
+	if(s == NULL){
+		fprintf(stderr, "nome di s è NULL");
+		exit(1);
+	}
+	char tmp[100];
+	concatplus(tmp, "%s.pro",s);
+	FILE * fp = fopen(tmp,"w");
+	if(fp == NULL){
+		perror("WebCUtil ");
+		return;
+	}
+	fclose(fp);
+}
+
+int send_simple_code (server * server, const String code){
+	if (listen(server->server_fd, 3) < 0){
+        return Html_error;
+    }
+    if ((server->new_socket = accept(server->server_fd, (struct sockaddr *)&server->address, (socklen_t *)&server->addrlen)) < 0){
+        return Html_error;
+    }
+    char *response_2[BUFFER_SIZE];
+    server->valread = read(server->new_socket, buffer, BUFFER_SIZE);
+    concatplus(response_2,"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n%s",code);
+    write(server->new_socket, response_2, strlen(response_2));
+    close(server->new_socket);
+    return Html_ok;
+}
+
+char * search_word_ (const char * texto, const char *palabra, char caracterLimite)
+{
+	char *encontrado = strstr(texto, palabra);
+	if (encontrado != NULL)
+	{
+		size_t posicionFinal = encontrado - texto + strlen(palabra);
+		const char *limite = strchr(texto + posicionFinal, caracterLimite);
+		if (limite != NULL)
+		{
+			size_t longitud = limite - (texto + posicionFinal);
+			char *subcadena = (char *)malloc(longitud + 1);
+			strncpy(subcadena, texto + posicionFinal, longitud);
+			subcadena[longitud] = '\0';
+			return subcadena;
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+	else
+	{
+		return NULL;
+	}
+}
+
+int search_w(const char * word, const char *texto)
+{
+	char *text_copy = strdup(word);
+	if (text_copy == NULL)
+	{
+		return Error;
+	}
+	char *line = strtok(text_copy, "\n");
+	while (line != NULL)
+	{
+		if (strstr(line, texto) != NULL)
+		{
+			free(text_copy);
+			return Ok;
+		}
+		line = strtok(NULL, "\n");
+	}
+	free(text_copy);
+	return Error;
+}
+
+void _save(const String fp, const String key, const String value, const String comentarios){
+	if(fp == NULL){
+		fprintf(stderr, "Nombre de fichero detectado como NULL\n");
+		exit(1);
+	}
+	char tmp[100];
+	char data[2024];
+	concatplus(tmp,"%s.pro",fp);
+	FILE * f = fopen(tmp,"a"), * f2 = fopen(tmp,"r");
+	if(f == NULL || f2 == NULL){
+		perror("WebCUtil ");
+		fclose(f2);
+    	fclose(f);
+		return;
+	}
+	if(key == NULL || value == NULL){
+		fprintf(stderr, "No se pueden guardar key o values de formal NULL\n");
+		fclose(f2);
+    	fclose(f);
+		exit(1);
+		return;
+	}
+	fread(data,sizeof(char), 2024, f2);
+	int res = search_w(data,key);
+	if(res == Ok){
+		fprintf(stderr, "Key existente\n");
+		fclose(f2);
+    	fclose(f);
+		return;
+	}
+	if(comentarios == NULL){
+		fprintf(f, "%s=%s\n", key, value);
+	} else {
+		fprintf(f, "/*%s*/\n%s=%s\n", comentarios, key, value);
+	}
+	fclose(f2);
+	fclose(f);
+}
+
+String _getValue (const String name, const String key, const String value){
+	if(name == NULL){
+		fprintf(stderr, "Nombre de fichero detectado como NULL\n");
+		exit(1);
+	}
+	if(key == NULL){
+		fprintf(stderr, "Nombre de la key detectado como NULL\n");
+		exit(1);
+	}
+	char tmp[100];
+	char data[2024];
+	char tmp2[100];
+	String result;
+	concatplus(tmp2,"%s=",key);
+	concatplus(tmp,"%s.pro",name);
+	FILE * fp = fopen(tmp,"r");
+	if(fp == NULL){
+		perror("WebCUtil ");
+		return NULL;
+	}
+	fread(data, sizeof(char), 2024, fp);
+	result = search_word_(data,tmp2,'\n');
+	if(strcmp(result,"") == 0){
+		result = value;
+	}
+	if(strcmp(result," ") == 0){
+		result = value;
+	}
+	fclose(fp);
+	return result;
+}
+
+String _getDat (const String d){
+	if(d == NULL){
+		fprintf(stderr, "Nombre de fichero detectado como NULL\n");
+		exit(1);
+	}
+	char tmp[100];
+	char data[2024];
+	String result;
+	concatplus(tmp,"%s.pro",d);
+	FILE * fp = fopen(tmp,"r");
+	if(fp == NULL){
+		perror("WebCUtil ");
+		return NULL;
+	}
+	fread(data, sizeof(char), 2024, fp);
+	result = data;
+	return result;
+}
+
+int _quit (const String fp){
+	if(fp == NULL){
+		fprintf(stderr, "Nombre de fichero detectado como NULL\n");
+		exit(1);
+	}
+	char tmp[100];
+	concatplus(tmp,"%s.pro",fp);
+	if(remove(tmp) == -1){
+		perror("WebCUtil ");
+		return -1;
+	} else {
+		return 1;
+	}
+}
+
+void properties (Properties * p){
+	p->save = _save;
+	p->delete = _quit;
+	p->getValue = _getValue;
+	p->getDat = _getDat;
+	p->resetData = _resetData;
+}
+
 static int _save_response(const char *namefile)
 {
 	FILE *fp = fopen(namefile, "a");
