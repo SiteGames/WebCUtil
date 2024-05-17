@@ -10,18 +10,39 @@ typedef struct{
 	date date;
 } sessions;
 
-static void random_abc(char t[])
-{
+typedef struct {
+	void (*new_session)(const String, const String);
+	void (*get_session)(const String);
+	void (*destroy_session)(const String);
+}SESSIONS;
+
+static void random_abc(char t[]){
 	srand(time(NULL));
 	int caracteres[MAX_SESSION_ID_LENGTH];
-	for (int i = 0; i < MAX_SESSION_ID_LENGTH; i++)
-	{
+	for (int i = 0; i < MAX_SESSION_ID_LENGTH; i++){
 		caracteres[i] = 65 + rand() % (90 - 65 + 1);
 	}
-	for (int i = 0; i < MAX_SESSION_ID_LENGTH; i++)
-	{
+	for (int i = 0; i < MAX_SESSION_ID_LENGTH; i++){
 		t[i] = caracteres[i];
 	}
+}
+
+static void _new_session (const String name, const String data){
+	
+}
+
+static void _get_session (const String name){
+	
+}
+
+static void _destroy_session (const String name){
+	
+}
+
+static void Sessions (SESSIONS * s){
+	s->new_session = _new_session;
+	s->get_session = _get_session;
+	s->destroy_session = _destroy_session;
 }
 
 void create_session(sessions *ses)
