@@ -4,38 +4,38 @@ Esta es una libreria en desarrollo muy temprano tiene como objetivo poder usar e
 Aqui un codigo de ejemplo que encontrara en un archivo llamado **main.c**
 ## Codigo de muestra
 ```
-#include <webcutil/webcutil.h>
-//Se crea la pagina que se envia como respuesta
-void index (html * log){
-    log->title("Hola mundo");
-    log->html_o("lang=\"es\"");
-    log->head_o(NULL);
-    log->meta("charset=\"UTF-8\"");
-    log->meta("http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"");
-    log->meta("name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"");
-    log->head_c();
-    log->body_o(NULL);
-    log->form_o("method=\"POST\" action=\"\"");
-    log->input("type=\"text\" name=\"texto\" value=\"un texto. . .\"");
-    log->button(NULL,"Enviar");
-    log->script("main.js","");
-    log->form_c();
-    log->body_c();
-    log->html_c();
-}
+#include "webcutil.h"
 
-int main(int argc, char *argv[]){
-	server servidor;//Se crea una variable server de la estructura server
-	servidor.port = 8080;//se asigna un puerto
-	servidor.buffer_file = 6094;//se asigna un tamaño de buffer de archivos externos como los css y js que se usen
-	open_server(&servidor);//se inicia el servidor
-	while(Web_ok){//Se crea un bucle principal para las request
-		html index_page;
-        ini_html(&index_page);
-        index(&index_page);
-    index_page.send(&servidor); printf("%s",servidor.load_buffer());
+void index_page (html * );
+
+int main (){
+	//creaciòn y inizializaciòn del servidor
+	server servidor;
+	servidor.port = 8080;
+	servidor.buffer_file = 6096;
+	open_server(&servidor);
+	//bucle principal de la pagina web
+	while(Web_ok){
+		//crear y enviar la pagina html
+		html page;
+		ini_html(&page);
+		index_page(&page);
+		page.send(&servidor,Js_errors_off);
+		//imprimir en consola la respuesta del navegador
+		printf("%s",servidor.load_buffer());
 	}
 	return 0;
+}
+
+void index_page (html * page){
+	page->title("Ciao, mondo!");
+	page->html_o(NULL);
+	page->head_o(NULL);
+	page->head_c();
+	page->body_o(NULL);
+	page->h1(NULL,"Ciao, mondo!");
+	page->body_c();
+	page->html_c();
 }
 ````
 ## Notas
