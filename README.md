@@ -20,7 +20,7 @@ int main (){
 		html page;
 		ini_html(&page);
 		index_page(&page);
-		page.send(&servidor,Js_errors_off);
+		page.send(&servidor);
 		//imprimir en consola la respuesta del navegador
 		printf("%s",servidor.load_buffer());
 	}
