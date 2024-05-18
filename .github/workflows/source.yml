@@ -1,8 +1,8 @@
-name: Source code WebCUtils (sessions)
+name: Source code WebCUtils
 on:
   push:
     branches:
-      - sessions
+      - main
 
 jobs:
   publish_source:
