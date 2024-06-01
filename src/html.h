@@ -1,162 +1,9 @@
 #ifndef HTML_H
 #define HTML_H
 
-typedef struct{
-	int long_html;
-	void (*show_html_console)();
-	void (*resetAllHTML)();
-	void (*view_html)();
-	void (*title)(const String);
-	void (*html_o)(const String);
-	void (*html_c)();
-	void (*canvas_o)(const String);
-	void (*canvas_c)();
-	void (*center_o)();
-	void (*center_c)();
-	void (*h1)(const String, const String);
-	void (*h2)(const String, const String);
-	void (*h3)(const String, const String);
-	void (*h4)(const String, const String);
-	void (*h5)(const String, const String);
-	void (*h6)(const String, const String);
-	void (*i)(const String, const String);
-	void (*b)(const String, const String);
-	void (*e)(const String, const String);
-	void (*em)(const String, const String);
-	void (*button)(const String, const String);
-	void (*script)(const String, const String);
-	void (*script_src)(const String, server *, int);
-	void (*div)(const String);
-	void (*div_o)(const String);
-	void (*div_c)();
-	void (*body_o)(const String);
-	void (*body_c)();
-	void (*body)();
-	void (*head_o)(const String);
-	void (*head_c)();
-	void (*head)(const String);
-	int (*img)(const String);
-	int (*a)(const String, const String);
-	void (*main_o)(const String);
-	void (*main_c)();
-	void (*section_o)(const String);
-	void (*section_c)();
-	void (*section)(const String);
-	void (*article_o)(const String);
-	void (*article_c)();
-	void (*article)(const String);
-	void (*header_o)(const String);
-	void (*header_c)();
-	void (*header)(const String);
-	void (*style)(const String);
-	void (*footer)(const String);
-	void (*footer_o)(const String);
-	void (*footer_c)();
-	void (*video)(const String);
-	void (*source)(const String);
-	void (*form)(const String);
-	void (*form_o)(const String);
-	void (*form_c)();
-	int (*input)(const String);
-	int (*meta)(const String);
-	int (*link)(const String);
-	void (*aside)(const String);
-	void (*hr)();
-	void (*br)();
-	void (*pre)();
-	void (*center)();
-	void (*textarea)(const String);
-	void (*blockquote)(const String);
-	void (*ol)(const String);
-	void (*ol_o)(const String);
-	void (*ol_c)();
-	void (*ul)(const String);
-	void (*ul_o)(const String);
-	void (*ul_c)();
-	void (*li)(const String, const String);
-	void (*dl)();
-	void (*dl_o)(const String);
-	void (*dl_c)();
-	void (*dt)();
-	void (*dt_o)(const String);
-	void (*dt_c)();
-	void (*dd)();
-	void (*dd_o)(const String);
-	void (*dd_c)();
-	void (*figure)();
-	void (*figure_o)(const String);
-	void (*figure_c)();
-	void (*small)();
-	void (*cite)();
-	void (*sub)();
-	void (*sup)();
-	void (*mark)();
-	int (*iframe)(const String);
-	void (*embed)();
-	void (*audio)(const String);
-	void (*table)();
-	void (*table_o)(const String);
-	void (*table_c)();
-	void (*tbody)(const String);
-	void (*tbody_o)(const String);
-	void (*tbody_c)();
-	void (*thead)(const String);
-	void (*thead_o)(const String);
-	void (*thead_c)();
-	void (*tfoot)(const String);
-	void (*tfoot_o)(const String);
-	void (*tfoot_c)();
-	int (*tr)(const String, const String);
-	int (*td)(const String, const String);
-	int (*th)(const String, const String);
-	void (*label)(const String, const String);
-	void (*select)(const String);
-	void (*select_o)(const String);
-	void (*select_c)();
-	void (*option)(const String);
-	void (*option_o)(const String);
-	void (*option_c)();
-	void (*caption)();
-	void (*p)(const String, const String);
-	void (*coment_o)();
-	void (*coment_c)();
-	void (*php_o)();
-	void (*php_c)();
-	void (*nav_o)(const String);
-	void (*nav_c)();
-	void (*nav)();
-	void (*script_o)();
-	void (*script_c)();
-	void (*style_o)();
-	void (*style_c)();
-	void (*style_src)(const String, server *, int);
-	void (*php)(const String);
-	void (*text)(const String);
-	int (*send)(server *);
-	void (*load_extern_html)();
-} html;
-
 void cat_str(const String texto1, const String texto2, String resultado){
     strcpy(resultado, texto1);
     strcat(resultado, texto2);
-}
-
-void concatplus(char* result, const char* format, ...) {
-    va_list args;
-    va_start(args, format);
-    va_list args_copy;
-    va_copy(args_copy, args);
-    int length = vsnprintf(NULL, 0, format, args_copy);
-    va_end(args_copy);
-    vsnprintf(result, length + 1, format, args);
-    va_end(args);
-}
-
-String catStr(const String texto1, const String texto2){
-    String resultado;
-    strcpy(resultado, texto1);
-    strcat(resultado, texto2);
-    return resultado;
 }
 
 static void _title (const String title){
@@ -360,6 +207,19 @@ static void _p (const String attributes, const String p){
     }
 }
 
+static void _pInt (const String attributes, const String p){
+    char tmp1[HTML_LONG];
+    if(attributes == NULL){
+    	concatplus(result_html,"<p>%s</p>\n",p);
+    	cat_str(true_html,"",tmp1);
+    	cat_str(tmp1,result_html,true_html);
+    } else {
+    	concatplus(result_html,"<p %s >%s</p>\n",attributes,p);
+    	cat_str(true_html,"",tmp1);
+    	cat_str(tmp1,result_html,true_html);
+    }
+}
+
 static void _button (const String attributes, const String button){
     char tmp1[HTML_LONG];
     if(attributes == NULL){
@@ -475,7 +335,7 @@ static void _head (const String head){
 
 static int _img (const String attributes){
     if(attributes == NULL){
-        return Html_error;
+        return ERROR;
     } else {
         char tmp1[HTML_LONG];
         concatplus(result_html,"<img %s />\n",attributes);
@@ -1299,6 +1159,26 @@ static void _nav_c (){
     cat_str(tmp1,result_html,true_html);
 }
 
+static void _tr_o (const String attributes){
+    char tmp1[HTML_LONG];
+    if(attributes == NULL){
+    	concatplus(result_html,"<tr>\n");
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
+    } else {
+    	concatplus(result_html,"<tr %s >\n",attributes);
+        cat_str(true_html,"",tmp1);
+        cat_str(tmp1,result_html,true_html);
+    }
+}
+
+static void _tr_c (){
+    char tmp1[HTML_LONG];
+    concatplus(result_html,"</tr>\n");
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
+}
+
 static void _nav (const String attributes, const String nav){
     char tmp1[HTML_LONG];
     if(attributes == NULL){
@@ -1319,19 +1199,19 @@ static void _text (const String cap){
     cat_str(tmp1,result_html,true_html);
 }
 
-static int _send_html (server * server){
-    if (listen(server->server_fd, 3) < 0){
-        return Html_error;
+static int _send_html (Server * Server){
+    if (listen(Server->server_fd, 3) < 0){
+        return ERROR;
     }
-    if ((server->new_socket = accept(server->server_fd, (struct sockaddr *)&server->address, (socklen_t *)&server->addrlen)) < 0){
-        return Html_error;
+    if ((Server->new_socket = accept(Server->server_fd, (struct sockaddr *)&Server->address, (socklen_t *)&Server->addrlen)) < 0){
+        return ERROR;
     }
     char *response_2[BUFFER_SIZE];
-    server->valread = read(server->new_socket, buffer, BUFFER_SIZE);
+    Server->valread = read(Server->new_socket, buffer, BUFFER_SIZE);
     cat_str("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n", true_html, response_2);
-    write(server->new_socket, response_2, strlen(response_2));
-    close(server->new_socket);
-    return Html_ok;
+    write(Server->new_socket, response_2, strlen(response_2));
+    close(Server->new_socket);
+    return OK;
 }
 
 void _delete (){
@@ -1346,11 +1226,11 @@ void _show_html_console (){
     printf("HTML send(length: %ld):\n%s\n",strlen(true_html),true_html);
 }
 
-static void _script_src (const String archivo, server * s, int op){
+static void _script_src (const String archivo, Server * s, int op){
 	char archivo1[200];
 	char contentJs[s->buffer_file];
 	char tmp1[HTML_LONG];
-    cat_str(archivo,".js",archivo1);
+	concatplus(archivo1,"js/%s.js",archivo);
 	FILE * fp = fopen(archivo1,"r");
 	if(fp == NULL){
 		perror("WebCUtil ");
@@ -1370,34 +1250,30 @@ static void _script_src (const String archivo, server * s, int op){
 	fclose(fp);
 }
 
-static void _load_extern_html (const String archivo, server * s,int i, ...){
-	/*char archivo1[100];
-	char contentHtml[s->buffer_file];
-	char tmp[HTML_LONG], tmp2[HTML_LONG];
-	cat_str(archivo, ".html", archivo1);
-	FILE * fp = fopen(archivo1, "r");
+String getStringHtml (const String archivo){
+	char archivo_total[1024];
+	char content_html[HTML_LONG];
+	concatplus(archivo_total,"html/%s.html",archivo);
+	FILE * fp = fopen (archivo_total, "r");
 	if(fp == NULL){
 		perror("WebCUtil ");
-		return;
-	} else {
-		size_t html_size = fread(contentHtml, sizeof(char), s->buffer_file, fp);
-		va_list args;
-        va_start(args, numArgs);
-        for (int i = 0; i < numArgs; i++) {
-              char * dato = va_arg(args, char *);
-              //concatplus(tmp2, contentHtml, dato);
-              printf("Dato %d: %s\n", i+1, dato);
-        }
-        va_end(args);
 	}
-	fclose(fp);*/
+	size_t html_size = fread(content_html, sizeof(char), HTML_LONG, fp);
+	return content_html;
 }
 
-static void _style_src (const String archivo, server * s, int op){
+static void _load_extern_html (const String code){
+	char tmp1[HTML_LONG];
+	concatplus(result_html,"%s\n",code);
+    cat_str(true_html,"",tmp1);
+    cat_str(tmp1,result_html,true_html);
+}
+
+static void _style_src (const String archivo, Server * s, int op){
 	char archivo1[200];
 	char contentJs[s->buffer_file];
 	char tmp1[HTML_LONG];
-    cat_str(archivo,".css",archivo1);
+	concatplus(archivo1,"css/%s.css",archivo);
 	FILE * fp = fopen(archivo1,"r");
 	if(fp == NULL){
 		perror("WebCUtil ");
@@ -1417,7 +1293,9 @@ static void _style_src (const String archivo, server * s, int op){
 	fclose(fp);
 }
 
-void ini_html (html * html){
+void buildHtml (BuildHtml * html){
+    html->tr_o = _tr_o;
+    html->tr_c = _tr_c;
     html->script_src = _script_src;
     html->style_src = _style_src;
     html->php_o = _php_o;
