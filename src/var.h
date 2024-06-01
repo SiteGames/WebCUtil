@@ -5,6 +5,7 @@ typedef const char * String;
 
 #define ERROR 500
 #define OK 200
+#define NOT_FOUND 404
 #define EMPTY NULL
 #define V 200
 #define PAGE String
@@ -16,6 +17,11 @@ char buffer[BUFFER_SIZE] = {0};
 
 char true_html[BUFFER_SIZE_3] = " ";
 char result_html[BUFFER_SIZE_3] = "<html>";
+int pre = 0;
+String content_file;
+size_t length;
+size_t body_offset;
+String end_of_header;
 
 enum {
 	false,
@@ -202,5 +208,19 @@ typedef struct{
 	void (*tr_c)();
 	void (*load_extern_html)(const String);
 }BuildHtml;
+
+typedef struct{
+	String (*name_archive)();
+	String (*size_archive)();
+	String (*type_archive)();
+	int (*prepare_save)(Server *);
+	int (*save)(const String );
+	int (*isset_archive)();
+	int (*upload)(Server *, const char *);
+	void (*create_archive)(const String, const String, const String);
+	String name;
+	String type;
+	String length;
+}Archives;
 
 #endif
