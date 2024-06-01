@@ -19,13 +19,8 @@
 #include <sqlite3.h>
 #include <curl/curl.h>
 
-#include "globalvar.h"
+#include "var.h"
 #include "server.h"
 #include "html.h"
-#include "chtml.h" 
-#include "sessions.h"
-#include "http.h"
-#include "files.h"
-#include "sqlite.h"
 
 #endif
