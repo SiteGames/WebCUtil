@@ -278,7 +278,7 @@ static int _rebuilt_file (const String fp, const String console, int time){
 static int _save_response(const char *namefile)
 {
 	FILE *fp = fopen(namefile, "a");
-	if (fp == NULL)
+	if (fp == EMPTY)
 	{
 		return ERROR;
 	}
@@ -288,14 +288,14 @@ static int _save_response(const char *namefile)
 }
 
 String parseInt (int entero){
-	int len = snprintf(NULL, 0, "%d", entero);
+	int len = snprintf(EMPTY, 0, "%d", entero);
 	String str = malloc(len + 1);
 	snprintf(str, len +1, "%d", entero);
 	return str;
 }
 
 String parseFloat (double flotante){
-	int len = snprintf(NULL, 0, "%.2f", flotante);
+	int len = snprintf(EMPTY, 0, "%.2f", flotante);
 	String str = malloc(len + 1);
 	snprintf(str, len +1, "%.2f", flotante);
 	return str;
@@ -305,12 +305,34 @@ int parseStr (String str){
 	return atoi(str);
 }
 
+char * searchInResponse (const char *palabra, char caracterLimite){
+	char *texto = GET_RESPONSE();
+	char *encontrado = strstr(texto, palabra);
+	if (encontrado != EMPTY){
+		size_t posicionFinal = encontrado - texto + strlen(palabra);
+		const char *limite = strchr(texto + posicionFinal, caracterLimite);
+		if (limite != EMPTY){
+			size_t longitud = limite - (texto + posicionFinal);
+			char *subcadena = (char *)malloc(longitud + 1);
+			strncpy(subcadena, texto + posicionFinal, longitud);
+			subcadena[longitud] = '\0';
+			return subcadena;
+		}
+		else{
+			return EMPTY;
+		}
+	}
+	else{
+		return EMPTY;
+	}
+}
+
 void concatplus(char* result, const char* format, ...) {
     va_list args;
     va_start(args, format);
     va_list args_copy;
     va_copy(args_copy, args);
-    int length = vsnprintf(NULL, 0, format, args_copy);
+    int length = vsnprintf(EMPTY, 0, format, args_copy);
     va_end(args_copy);
     vsnprintf(result, length + 1, format, args);
     va_end(args);
