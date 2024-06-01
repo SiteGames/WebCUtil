@@ -1,33 +1,31 @@
 #include "webcutil.h"
 
-void index_page (html * );
+void index_page (BuildHtml * );
 
 int main (){
-	//creaciòn y inizializaciòn del servidor
-	server servidor;
-	servidor.port = 8080;
-	servidor.buffer_file = 6096;
-	open_server(&servidor);
-	//bucle principal de la pagina web
-	while(Web_ok){
-		//crear y enviar la pagina html
-		html page;
-		ini_html(&page);
+	Server server;
+	server.port = 8080;
+	server.buffer_file = 6046;
+	server.url = "127.0.0.1";
+	openServer(&server);
+	while(true){
+		BuildHtml page;
+		buildHtml(&page);
 		index_page(&page);
-		page.send(&servidor);
-		//imprimir en consola la respuesta del navegador
-		printf("%s",servidor.load_buffer());
+		page.send(&server);
+		page.resetAllHTML();
+		printf("%s",server.load_buffer());
 	}
 	return 0;
 }
 
-void index_page (html * page){
-	page->title("Ciao, mondo!");
-	page->html_o(NULL);
-	page->head_o(NULL);
+void index_page (BuildHtml * page){
+	page->html_o(EMPTY);
+	page->title("A tittle");
+	page->head_o(EMPTY);
 	page->head_c();
-	page->body_o(NULL);
-	page->h1(NULL,"Ciao, mondo!");
+	page->body_o(EMPTY);
+	page->h1(EMPTY,"Is Empty");
 	page->body_c();
 	page->html_c();
 }
