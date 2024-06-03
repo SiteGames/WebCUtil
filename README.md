@@ -1,39 +1,66 @@
 # WebCUtil
-Una libreria para usar el lenguaje C en la web
-Esta es una libreria en desarrollo muy temprano tiene como objetivo poder usar el lenguaje C en la web como servidor y podiendo enviar o crear paginas webs desde el codigo C como tambien trabajar con archivos *.htm, *.css y *.js.
-Aqui un codigo de ejemplo que encontrara en un archivo llamado **main.c**
+Esta es una libreria con la idea de usar el lenguaje C en la web como la estructura del servidor donde C se encargaria de todo lo relacionado con el servidor desde el manejo de peticiones GET o POST procesar formularios, manejar base de datos, etc...
+Esto es una libreria experimental no es un proyecto serio solo es para experientar. Puedes dar ideas, o ser participe de este proyecto.
+
 ## Codigo de muestra
 ```
 #include "webcutil.h"
+#include "webcutil.h"
 
-void index_page (html * );
+void index_page (BuildHtml * );
+void error_404_page (BuildHtml *);
 
 int main (){
-	//creaciòn y inizializaciòn del servidor
-	server servidor;
-	servidor.port = 8080;
-	servidor.buffer_file = 6096;
-	open_server(&servidor);
-	//bucle principal de la pagina web
-	while(Web_ok){
-		//crear y enviar la pagina html
-		html page;
-		ini_html(&page);
+	Server server;
+	server.port = 8080;
+	server.buffer_file = 6046;
+	server.url = "127.0.0.1";
+	openServer(&server);
+	while(true){
+		BuildHtml page;
+		buildHtml(&page);
 		index_page(&page);
-		page.send(&servidor);
-		//imprimir en consola la respuesta del navegador
-		printf("%s",servidor.load_buffer());
+		page.send(&server);
+		page.resetAllHTML();
+		int res = server.registers_url();
+		if(res != OK){
+			while(true){
+				BuildHtml page2;
+				buildHtml(&page2);
+				error_404_page(&page2);
+				page2.send(&server);
+				page2.resetAllHTML();
+				if(search_w("index.c",server.load_buffer())){
+					puts("Salio");
+				}
+			}
+		}
+		server.saveBuffer("datosTest");
 	}
 	return 0;
 }
 
-void index_page (html * page){
-	page->title("Ciao, mondo!");
-	page->html_o(NULL);
-	page->head_o(NULL);
+void error_404_page (BuildHtml * page){
+	page->html_o(EMPTY);
+	page->title("Error 404");
+	page->head_o(EMPTY);
 	page->head_c();
-	page->body_o(NULL);
-	page->h1(NULL,"Ciao, mondo!");
+	page->body_o(EMPTY);
+	page->center_o();
+	page->h1(EMPTY,"Pagina no encontrada: Error 404");
+	page->a("href=\"index.c\"","Volver al index");
+	page->center_c();
+	page->body_c();
+	page->html_c();
+}
+
+void index_page (BuildHtml * page){
+	page->html_o(EMPTY);
+	page->title("A tittle");
+	page->head_o(EMPTY);
+	page->head_c();
+	page->body_o(EMPTY);
+	page->h1(EMPTY,"Is Empty");
 	page->body_c();
 	page->html_c();
 }
