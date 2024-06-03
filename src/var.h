@@ -55,10 +55,11 @@ typedef struct{
 	void (*showBuffer)();
 	String (*convertJsonData)(String [], String []);
 	int (*rebuilt_file)(const String, const String, int);
+	int (*registers_url)();
 }Server;
 
 typedef struct {
-	void (*save)(const String, const String, const String, const String);
+	int (*save)(const String, const String, const String, const String);
 	int (*delete)(const String);
 	char dat[2024];
 	String nameData;
