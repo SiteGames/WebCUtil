@@ -31,7 +31,7 @@ int main (){
 				page2.send(&server);
 				page2.resetAllHTML();
 				if(search_w("index.c",server.load_buffer())){
-					puts("Salio");
+					break;
 				}
 			}
 		}
