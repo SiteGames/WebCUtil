@@ -5,7 +5,6 @@ Esto es una libreria experimental no es un proyecto serio solo es para experient
 ## Codigo de muestra
 ```
 #include "webcutil.h"
-#include "webcutil.h"
 
 void index_page (BuildHtml * );
 void error_404_page (BuildHtml *);
