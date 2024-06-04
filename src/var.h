@@ -224,4 +224,101 @@ typedef struct{
 	String length;
 }Archives;
 
+typedef struct {
+	struct{
+		int (*isset)(const String);
+		char * (*get_name)(const char *, char);
+		int (*read_img)(Server *);
+	    int (*read_video)(Server *);
+	}Get;
+	struct{
+		int (*isset)(const String);
+		char * (*post_name)(const char *, char);
+	}Post;
+	const int code;
+	const char *str;
+    int (*isset)(const String);
+    char * (*get_isset)(const char *, char);
+}Http;
+
+typedef struct{
+	String (*contentLength)();
+	String (*platform_user)();
+	String (*referer)();
+	String (*accept_language)();
+	String (*host)();
+	String (*connection)();
+	String (*accept)();
+	String (*accept_encoding)();
+	String (*user_agent)();
+	String (*upgrade_insecure_requests)();
+}Response;
+
+typedef struct{
+	int (*open_)(const String, const String, const String);
+	String (*load_)();
+	void (*close_)();
+	int (*send_)();
+	int (*send_content_server)(Server *);
+	int (*open_local)(const String, const String);
+	int status;
+	String data;
+	const String url;
+	struct curl_slist * headers;
+	int (*open_url)(const String);
+	char * (*connect)(const String, const String, const String, const String, char *);
+}Connect;
+
+Http status_map[] = {
+	{100, "Continue"},
+	{101, "Switching Protocols"},
+	{200, "OK"},
+	{201, "Created"},
+	{202, "Accepted"},
+	{203, "Non-Authoritative Information"},
+	{204, "No Content"},
+	{205, "Reset Content"},
+	{206, "Partial Content"},
+	{300, "Multiple Choices"},
+	{301, "Moved Permanently"},
+	{302, "Found"},
+	{303, "See Other"},
+	{304, "Not Modified"},
+	{305, "Use Proxy"},
+	{307, "Temporary Redirect"},
+	{308, "Permanent Redirect"},
+	{400, "Bad Request"},
+	{401, "Unauthorized"},
+	{402, "Payment Required"},
+	{403, "Forbidden"},
+	{404, "Not Found"},
+	{405, "Method Not Allowed"},
+	{406, "Not Acceptable"},
+	{407, "Proxy Authentication Required"},
+	{408, "Request Timeout"},
+	{409, "Conflict"},
+	{410, "Gone"},
+	{411, "Length Required"},
+	{412, "Precondition Failed"},
+	{413, "Request Entity Too Large"},
+	{414, "Request-URI Too Long"},
+	{415, "Unsupported Media Type"},
+	{416, "Requested Range Not Satisfiable"},
+	{417, "Expectation Failed"},
+	{426, "Upgrade Required"},
+	{428, "Precondition Required"},
+	{429, "Too Many Requests"},
+	{431, "Request Header Fields Too Large"},
+	{451, "Unavailable For Legal Reasons"},
+	{500, "Internal Server Error"},
+	{501, "Not Implemented"},
+	{502, "Bad Gateway"},
+	{503, "Service Unavailable"},
+	{504, "Gateway Timeout"},
+	{505, "HTTP Version Not Supported"},
+	{506, "Variant Also Negotiates"},
+	{511, "Network Authentication Required"},
+	{0, EMPTY}
+};
+
 #endif
