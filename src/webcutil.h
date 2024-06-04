@@ -22,5 +22,7 @@
 #include "var.h"
 #include "server.h"
 #include "html.h"
+#include "archives.h"
+#include "http.h"
 
 #endif
