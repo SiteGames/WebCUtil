@@ -65,7 +65,7 @@ void index_page (BuildHtml * page){
 }
 ````
 ## Notas
-Para usar la libreria necesitara tener instalado estas librerias porque **WebCUtils.h** las utiliza:
+En **webCUtil** se usan las siguientes librerias:
 
 1.**sqlite3.h**, puedes obtenerlo del sitio web oficial de SQLite en la sección de descargas: https://www.sqlite.org/download.html
 
