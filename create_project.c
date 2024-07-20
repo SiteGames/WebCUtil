@@ -81,7 +81,7 @@ int main (){
 	        fprintf(main_file,"    server.port = 8080;\n");
 	        fprintf(main_file,"    server.buffer_file = 6096;\n");
 	        fprintf(main_file,"    server.url = \"127.0.0.1\";\n");
-	        fprintf(main_file,"    openServer(&servidor);\n");
+	        fprintf(main_file,"    openServer(&server);\n");
 	        fprintf(main_file,"    while(1){\n");
 	        fprintf(main_file,"        BuildHtml index;\n");
 	        fprintf(main_file,"        buildHtml(&index);\n");
@@ -115,7 +115,7 @@ int main (){
                 fprintf(index_file,"<title>webCUtil project: %s</title>\n",nombre_del_proyecto);
                 fprintf(index_file,"</head>\n");
                 fprintf(index_file,"<body>\n");
-                fprintf(index_file,"<p>Benvenuto!</p>");
+                fprintf(index_file,"<p>Server On!</p>");
                 fprintf(index_file,"</body>\n");
                 fprintf(index_file,"</html>\n");
 	            printf("FILE: 'index.html' => Created successufully in folder '%s/html'\n",nombre_del_proyecto);
